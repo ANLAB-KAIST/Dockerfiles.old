@@ -43,5 +43,3 @@ RUN apt autoremove -y
 RUN apt autoclean -y
 
 ENV PATH "/usr/local/texlive/${INSTALL_YEAR}/bin/x86_64-linux:${PATH}"
-
-#RUN echo "PATH=/usr/local/texlive/${INSTALL_YEAR}/bin/x86_64-linux:\$\{PATH\}" >> ${HOME}/.profile
