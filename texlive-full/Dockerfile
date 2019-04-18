@@ -28,7 +28,7 @@ RUN ls -f | sed -r 's/(install-tl-([0-9]{4})[0-9]+)?(.*)/\2/g' | tr -d '\n' > TE
 RUN ls -f | sed -r 's/(install-tl-([0-9]{4})[0-9]+)?(.*)/\1/g' | tr -d '\n' > TEX_DIR
 
 # Since there is no way to setup ENV inside a container, we just check.
-RUN test ${TEX_YEAR} == `cat TEX_YEAR`
+RUN test "${TEX_YEAR}" == "`cat TEX_YEAR`"
 
 RUN echo "selected_scheme scheme-full" > texlive.profile
 RUN TEX_DIR="`cat TEX_DIR`" && perl ${TEX_DIR}/install-tl -profile texlive.profile
