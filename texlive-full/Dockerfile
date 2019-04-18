@@ -42,4 +42,4 @@ RUN rm -rf /install
 RUN apt autoremove -y
 RUN apt autoclean -y
 
-ENV PATH "/usr/local/texlive/${TEX_YEAR}/bin/x86_64-linux/:${PATH}"
+ENV PATH "/usr/local/texlive/${TEX_YEAR}/bin/x86_64-linux:${PATH}"
