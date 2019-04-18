@@ -10,7 +10,9 @@ pipeline {
                         }
                     }
                     steps {
-                        sh "latexmk --help"
+                        sh "latex --version"
+                        sh "bibtex --version"
+                        sh "latexmk --version"
                     }
                 }
             }
