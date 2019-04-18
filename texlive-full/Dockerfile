@@ -18,7 +18,7 @@ RUN apt install -y apt-transport-https
 RUN apt install -y build-essential wget time aspell aspell-*
 
 # Download latest tlnet
-RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+RUN wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 
 # Unzip the archive
 RUN tar xzf install-tl-unx.tar.gz
