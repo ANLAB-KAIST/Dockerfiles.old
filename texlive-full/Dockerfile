@@ -3,7 +3,7 @@
 # I prefer debian for the base.
 FROM debian:latest
 
-ENV TEX_YEAR 2019
+ENV INSTALL_YEAR 2018
 
 # prepare working dir
 RUN mkdir /install
@@ -21,18 +21,20 @@ RUN apt install -y build-essential wget time aspell aspell-*
 RUN wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 
 # Unzip the archive
-RUN tar xzf install-tl-unx.tar.gz
+RUN mkdir install-tl-unx
+RUN tar xvf install-tl-unx.tar.gz -C install-tl-unx --strip-components=1
 
-# Extract the version name
-RUN ls -f | sed -r 's/(install-tl-([0-9]{4})[0-9]+)?(.*)/\2/g' | tr -d '\n' > TEX_YEAR
-RUN ls -f | sed -r 's/(install-tl-([0-9]{4})[0-9]+)?(.*)/\1/g' | tr -d '\n' > TEX_DIR
+WORKDIR /install/install-tl-unx
+
+# Extract the version
+RUN perl install-tl --version | sed -r 's/(.* version ([0-9]+))?(.*)/\2/g' | tr -d '\n' > TEX_YEAR
 
 # Since there is no way to setup ENV inside a container, we just check.
-RUN echo "${TEX_YEAR}" > TEX_YEAR_CMP
+RUN echo "${INSTALL_YEAR}" > TEX_YEAR_CMP
 RUN diff -w -q TEX_YEAR_CMP TEX_YEAR
 
 RUN echo "selected_scheme scheme-full" > texlive.profile
-RUN TEX_DIR="`cat TEX_DIR`" && perl ${TEX_DIR}/install-tl -profile texlive.profile
+RUN perl install-tl -profile texlive.profile
 
 # Clean dirs
 WORKDIR /
