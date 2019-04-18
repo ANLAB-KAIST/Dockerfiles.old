@@ -22,7 +22,7 @@ RUN wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 
 # Unzip the archive
 RUN mkdir install-tl-unx
-RUN tar xvf install-tl-unx.tar.gz -C install-tl-unx --strip-components=1
+RUN tar xzf install-tl-unx.tar.gz -C install-tl-unx --strip-components=1
 
 WORKDIR /install/install-tl-unx
 
