@@ -1,0 +1,3 @@
+{
+    "jenkins.pipeline.linter.connector.url": "https://jenkins.leeopop.kr/pipeline-model-converter/validate"
+}
