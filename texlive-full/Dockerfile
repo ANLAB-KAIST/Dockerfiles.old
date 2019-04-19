@@ -13,7 +13,7 @@ WORKDIR /install
 RUN apt update -y && apt dist-upgrade -y
 
 # Minimal requirements
-RUN apt install -y --no-install-recommends wget time
+RUN apt install -y --no-install-recommends perl wget time
 
 # Download latest tlnet
 RUN wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
