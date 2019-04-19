@@ -12,10 +12,9 @@ WORKDIR /install
 # Bootstrap apt
 RUN apt update -y
 RUN apt dist-upgrade -y
-RUN apt install -y apt-transport-https
 
 # I removed unnesseary packages for web servers.
-RUN apt install -y build-essential wget time aspell aspell-*
+RUN apt install -y build-essential wget time
 
 # Download latest tlnet
 RUN wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
