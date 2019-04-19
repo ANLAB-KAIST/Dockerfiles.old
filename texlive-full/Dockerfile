@@ -10,11 +10,10 @@ RUN mkdir /install
 WORKDIR /install
 
 # Bootstrap apt
-RUN apt update -y
-RUN apt dist-upgrade -y
+RUN apt update -y && apt dist-upgrade -y
 
-# I removed unnesseary packages for web servers.
-RUN apt install -y build-essential wget time
+# Minimal requirements
+RUN apt install -y --no-install-recommends wget time
 
 # Download latest tlnet
 RUN wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
@@ -38,7 +37,6 @@ RUN perl install-tl -profile texlive.profile
 # Clean dirs
 WORKDIR /
 RUN rm -rf /install
-RUN apt autoremove -y
-RUN apt autoclean -y
+RUN apt autoremove -y && apt autoclean -y
 
 ENV PATH "/usr/local/texlive/${INSTALL_YEAR}/bin/x86_64-linux:${PATH}"
