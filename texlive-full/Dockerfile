@@ -40,3 +40,6 @@ RUN rm -rf /install
 RUN apt autoremove -y && apt autoclean -y
 
 ENV PATH "/usr/local/texlive/${INSTALL_YEAR}/bin/x86_64-linux:${PATH}"
+
+# Verify installation and print version
+RUN latex --version && bibtex --version && latexmk --version
